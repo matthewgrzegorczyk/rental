@@ -96,6 +96,10 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+th.id {
+    width: 1px;
+    white-space: nowrap;
+}
 .name > a, .reservation > a {
     font-weight: bold;
 }
