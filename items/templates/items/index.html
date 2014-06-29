@@ -1,7 +1,6 @@
 {% extends "items/base.html" %}
 
 {% block main %}
-	<h1 class="text-center"><a href="/">Rental app</a></h1>
     <div class="row-fluid">
         <table class="table table-striped table-bordered">
             <thead>
@@ -20,7 +19,7 @@
                             {{ item.pk }}
                         </td>
                         <td class="name">
-                            <a href="#">{{ item.name }}</a>
+                            <a href="{% url "view_item" item_id=item.pk %}">{{ item.name }}</a>
                         </td>
                         <td class="description">
                             {{ item.description|safe }}
@@ -29,7 +28,7 @@
                             {% if item.available %}
                                 <span class="label label-success">Tak</span>
                             {% else %}
-                                <span class="label label-success">Nie</span>
+                                <span class="label label-danger">Nie</span>
                             {% endif %}
                         </td>
                         <td class="reservation">

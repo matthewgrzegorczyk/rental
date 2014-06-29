@@ -10,7 +10,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'rental.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^grapppelli/', include('grappelli.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', views.index, name='index')
+    url(r"^grapppelli/", include("grappelli.urls")),
+    url(r"^admin/", include(admin.site.urls)),
+    url(r"^$", views.index, name="index"),
+    url(r"^item/(?P<item_id>\d+)/$", views.view_item, name="view_item")
 )

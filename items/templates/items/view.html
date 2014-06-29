@@ -1,8 +1,6 @@
 {% extends "items/base.html" %}
 
 {% block main %}
-    <h1 class="text-center"><a href="/">Murator</a></h1>
-    <p><strong>Imię:</strong> {{ review.name }}</p>
-    <p><strong>Data:</strong> {{ review.date|date:"Y-m-d H:i:s" }}</p>
-    <p><strong>Treść:</strong> {{ review.review|safe }}</p>
+    <p>Nazwa: {{ item.name }}</p>
+    <p>Opis: {{ item.description }}</p>
 {% endblock %}
