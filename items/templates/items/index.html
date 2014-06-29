@@ -19,7 +19,7 @@
                             {{ item.pk }}
                         </td>
                         <td class="name">
-                            <a href="{% url "view_item" item_id=item.pk %}">{{ item.name }}</a>
+                            <a href="{% url 'view_item' item_id=item.pk %}">{{ item.name }}</a>
                         </td>
                         <td class="description">
                             {{ item.description|safe }}
@@ -35,7 +35,7 @@
                             {% if item.rented_by %}
                                 <a href="#">{{ item.rented_by.username }}</a>
                             {% else %}
-                                <a href="#" class="btn btn-xs btn-primary btn-block">Rezerwuj</a>
+                                <a href="{% url 'reserve_item' item.pk %}" class="btn btn-xs btn-primary btn-block">Rezerwuj</a>
                             {% endif %}
                         </td>
                     </tr>

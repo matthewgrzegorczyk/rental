@@ -8,8 +8,9 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 class ItemAdmin(admin.ModelAdmin):
     model = Item
-    list_display = ['name', 'added_by', 'rented_by', 'rent_power', 'vision_power', 'tag_list']
+    list_display = ['name', 'added_by', 'added_on_date', 'rented_by', 'rented_on', 'rent_power', 'vision_power', 'tag_list']
     list_editable = ['rented_by', 'rent_power', 'vision_power']
+
 
 admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(GroupProfile)
