@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import models
 from items.models import Item
 
-# @login_required(login_url='/login')
+# @login_required(login_url='/admin')
 def index(request):
     items = Item.objects.all()
 

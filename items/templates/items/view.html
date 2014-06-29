@@ -3,4 +3,6 @@
 {% block main %}
     <p>Nazwa: {{ item.name }}</p>
     <p>Opis: {{ item.description }}</p>
+    <p>Dodany przez: {{ item.added_by.username }}</p>
+    <p>Wypożyczony przez: {{ item.rented_by.username|default:"Nikogo" }}</p>
 {% endblock %}
