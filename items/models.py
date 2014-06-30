@@ -11,11 +11,12 @@ class Tag(models.Model):
     def __unicode__(self):
         return self.slug
 
+
 class Item(models.Model):
     active = models.BooleanField(verbose_name="Active", default=True)
     name = models.CharField(verbose_name="Name", max_length=128)
     description = models.TextField(verbose_name="Description")
-    image = models.ImageField(upload_to="items/", blank=True, null=True)
+    image = models.ImageField(verbose_name="Image", upload_to="items/", blank=True, null=True)
     added_by = models.ForeignKey(User, related_name="added_by", verbose_name="Added by")
     rented_by = models.ForeignKey(User, related_name="rented_by", verbose_name="Rented by", blank=True, null=True)
     added_on = models.DateTimeField(verbose_name="Added on", editable=False, default=datetime.datetime.now)

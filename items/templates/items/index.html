@@ -6,10 +6,11 @@
             <thead>
                 <tr>
                     <th class="id">#</th>
-                    <th>Nazwa</th>
-                    <th>Opis</th>
+                    <th class="name">Nazwa</th>
+                    <th class="image">Zdjęcie</th>
+                    <th class="description">Opis</th>
                     <th class="availability">Dostępne?</th>
-                    <th>Wypożyczone przez</th>
+                    <th class="reservation">Wypożyczone przez</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,11 @@
                         </td>
                         <td class="name">
                             <a href="{% url 'view_item' item_id=item.pk %}">{{ item.name }}</a>
+                        </td>
+                        <td class="image">
+                            {% if item.image %}
+                                <img src="{{ item.image.url }}">
+                            {% endif %}
                         </td>
                         <td class="description">
                             {{ item.description|safe }}
@@ -33,9 +39,9 @@
                         </td>
                         <td class="reservation">
                             {% if item.rented_by %}
-                                <a href="#">{{ item.rented_by.username }}</a>
+                                <a href="{% url 'view_user' item.rented_by.pk %}">{{ item.rented_by.username }}</a>
                             {% else %}
-                                <a href="{% url 'reserve_item' item.pk %}" class="btn btn-xs btn-primary btn-block">Rezerwuj</a>
+                                <a href="{% url 'reserve_item' item.pk %}" class="btn btn-xs btn-default btn-block">Rezerwuj</a>
                             {% endif %}
                         </td>
                     </tr>

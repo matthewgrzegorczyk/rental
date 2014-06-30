@@ -100,6 +100,13 @@ th.id {
     width: 1px;
     white-space: nowrap;
 }
+th.image {
+    width: 1px;
+    white-space: nowrap;
+}
+td.image img {
+    max-width: 100px;
+}
 .name > a, .reservation > a {
     font-weight: bold;
 }

@@ -3,8 +3,12 @@ from django.conf import settings
 
 from django.contrib import admin
 
-from items import views
+from items.views import *
+from profiles.views import *
+
+
 admin.autodiscover()
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,9 +17,15 @@ urlpatterns = patterns('',
 
     url(r"^grapppelli/", include("grappelli.urls")),
     url(r"^admin/", include(admin.site.urls)),
-    url(r"^$", views.index, name="index"),
-    url(r"^item/(?P<item_id>\d+)/$", views.view_item, name="view_item"),
-    url(r"^item/(?P<item_id>\d+)/reserve/$", views.reserve_item, name="reserve_item")
+    url(r"^$", index, name="index"),
+
+    # Items
+    url(r"^item/(?P<item_id>\d+)/$", view_item, name="view_item"),
+    url(r"^item/(?P<item_id>\d+)/reserve/$", reserve_item, name="reserve_item"),
+
+    # Profiles
+    url(r"^profile/(?P<user_id>\d+)/$", view_user, name="view_user"),
+    url(r"^group/(?P<group_id>\d+)/$", view_group, name="view_group"),
 
 )
 

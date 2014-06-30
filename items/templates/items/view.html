@@ -3,6 +3,20 @@
 {% block main %}
     <p>Nazwa: {{ item.name }}</p>
     <p>Opis: {{ item.description }}</p>
-    <p>Dodany przez: {{ item.added_by.username }}</p>
-    <p>Wypożyczony przez: {{ item.rented_by.username|default:"Nikogo" }}</p>
+    <p>
+        Dodany przez:
+        {% if item.added_by %}
+            <a href="{% url 'view_user' item.added_by.pk %}">{{ item.added_by.username }}</a>
+        {% else %}
+            Anonima.
+        {% endif %}
+    </p>
+    <p>
+        Wypożyczony przez:
+        {% if item.rented_by %}
+            <a href="{% url 'view_user' item.rented_by.pk %}">{{ item.rented_by.username }}</a>
+        {% else %}
+            Nikogo.
+        {% endif %}
+    </p>
 {% endblock %}

@@ -1,14 +1,6 @@
 from django.contrib import admin
 from items.models import UserProfile, GroupProfile, Tag, Item
 
-class UserProfileAdmin(admin.ModelAdmin):
-    model = UserProfile
-    list_display = ['user', 'rent_power', 'vision_power']
-    list_editable = ['rent_power', 'vision_power']
-
-class GroupProfileAdmin(admin.ModelAdmin):
-    model = GroupProfile
-    list_display = ['group', 'rent_power', 'vision_power']
 
 class ItemAdmin(admin.ModelAdmin):
     model = Item
@@ -29,7 +21,7 @@ class ItemAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(UserProfile, UserProfileAdmin)
-admin.site.register(GroupProfile)
+# admin.site.register(UserProfile, UserProfileAdmin)
+# admin.site.register(GroupProfile)
 admin.site.register(Tag)
 admin.site.register(Item, ItemAdmin)
