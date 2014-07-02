@@ -1,0 +1,110 @@
+{% extends "items/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}
+    Rejestracja
+{% endblock %}
+
+{% block extrahead %}
+    {# <link rel="stylesheet" href="{% static "jquery/jquery-ui.min.css" %}"> #}
+    {# <link rel="stylesheet" href="{% static "css/jquery-ui.min.css" %}"> #}
+    {# <link rel="stylesheet" href="{% static "css/jquery-ui.structure.min.css" %}"> #}
+    <link rel="stylesheet" href="{% static "css/jquery-ui-1.10.0.custom.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery.ui.timepicker.css" %}">
+{% endblock %}
+
+{% block extrafooter %}
+    <script src="{% static "jquery/jquery-ui.js" %}"></script>
+    <script src="{% static "jquery/jquery-ui.min.js" %}"></script>
+    {# <script src="{% static "js/vendor/jquery-ui.min.js" %}"></script> #}
+    <script src="{% static "js/vendor/jquery.ui.timepicker.js" %}"></script>
+    {# <script src="{% static "js/vendor/jquery.ui.position.min.js" %}"></script> #}
+    {{ block.super }}
+{% endblock %}
+
+{% block main %}
+    <form action="/register/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <label>Nazwa użytkownika</label>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="input-group">
+                        <input name="username" type="text" class="form-control" title="Nazwa użytkownika nie może zawierać znaków specjalnych oraz spacji.">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                    </div>
+                </div>
+            </div><!-- .row -->
+            <label>Hasło</label>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="input-group">
+                        <input name="password" type="password" class="form-control" title="Hasła muszą się zgadzać.">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-heart-empty"></i>
+                        </span>
+                    </div>
+                </div>
+            </div><!-- .row -->
+            <label>Powtórz hasło</label>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="input-group">
+                        <input name="confirm_password" type="password" class="form-control" title="Hasła muszą się zgadzać.">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-heart-empty"></i>
+                        </span>
+                    </div>
+                </div>
+            </div><!-- .row -->
+            <label>Email</label>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="input-group">
+                        <input name="email" type="text" class="form-control" title="Email jest wymagany w celu aktywacji konta, wykorzystywany jest również w przypadku resetu hasła..">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                        </span>
+                    </div>
+                </div>
+            </div><!-- .row -->
+            <label>Imię</label>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="input-group">
+                        <input name="first_name" type="text" class="form-control" title="Imię. Wykorzystywane jest w profilu oraz w kilku innych miejscach w aplikacji.">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-heart-empty"></i>
+                        </span>
+                    </div>
+                </div>
+            </div><!-- .row -->
+            <label>Nazwisko</label>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="input-group">
+                        <input name="last_name" type="text" class="form-control" title="Nazwisko, wykorzysytwane wyłącznie w celach informacyjnych.">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-heart-empty"></i>
+                        </span>
+                    </div>
+                </div>
+            </div><!-- .row -->
+            <label>{{ form.avatar.label }}</label>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="input-group">
+                        {{ form.avatar }}
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-heart-empty"></i>
+                        </span>
+                    </div>
+                </div>
+            </div><!-- .row -->
+        <p>
+            <input class="btn btn-success" type="submit" value="Zarejestruj">
+        </p>
+    </form>
+{% endblock %}

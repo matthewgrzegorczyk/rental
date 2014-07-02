@@ -13,12 +13,26 @@ class Tag(models.Model):
 
 
 class Item(models.Model):
+    """
+    Basic item model.
+
+    Usage:
+    item = Item.objects.get(pk=id)
+    user = item.added_by
+
+    # Get user rented items
+    rented_items = user.items_rented.all()
+
+    # Get user items added by user
+    user_items = user.items_added.all()
+    """
+
     active = models.BooleanField(verbose_name="Active", default=True)
     name = models.CharField(verbose_name="Name", max_length=128)
     description = models.TextField(verbose_name="Description")
     image = models.ImageField(verbose_name="Image", upload_to="items/", blank=True, null=True)
-    added_by = models.ForeignKey(User, related_name="added_by", verbose_name="Added by")
-    rented_by = models.ForeignKey(User, related_name="rented_by", verbose_name="Rented by", blank=True, null=True)
+    added_by = models.ForeignKey(User, related_name="items_added", verbose_name="Added by")
+    rented_by = models.ForeignKey(User, related_name="items_rented", verbose_name="Rented by", blank=True, null=True)
     added_on = models.DateTimeField(verbose_name="Added on", editable=False, default=datetime.datetime.now)
     last_modified = models.DateTimeField(verbose_name="Modified on", editable=False, default=datetime.datetime.now)
     rented_on = models.DateTimeField(verbose_name="Rented On", blank=True, null=True)
@@ -26,6 +40,10 @@ class Item(models.Model):
     rent_power = models.SmallIntegerField(verbose_name="Rent Power", default=50, help_text=u"Power needed to rent item.")
     vision_power = models.SmallIntegerField(verbose_name="Vision Power", default=50, help_text=u"Power needed to view item.")
     tags = models.ManyToManyField(Tag, verbose_name="Tag")
+
+    class Meta:
+        get_latest_by = "added_on"
+        ordering = ['-added_on', '-last_modified']
 
     def __unicode__(self):
         return self.name

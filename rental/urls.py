@@ -27,6 +27,10 @@ urlpatterns = patterns('',
     url(r"^profile/(?P<user_id>\d+)/$", view_user, name="view_user"),
     url(r"^group/(?P<group_id>\d+)/$", view_group, name="view_group"),
 
+    # Login/Register
+    url(r"^login/$", login, name="login"),
+    url(r"^register/$", register, name="register"),
+
 )
 
 if settings.DEBUG:

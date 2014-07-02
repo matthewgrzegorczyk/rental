@@ -1,5 +1,77 @@
 {% extends "items/base.html" %}
+{% load thumbnail %}
+
+{% block title %}
+    Profil użytkownika {{ user.username }}
+{% endblock %}
 
 {% block main %}
-    {{ user.username }}
+    <div class="row profile">
+        <div class="col-lg-12">
+            <div class="avatar">
+                {% if user.userprofile.image %}
+                    <img class="img-circle img-thumbnail" src="{% thumbnail user.userprofile.image 200x200 bw crop="smart" %}" alt="{{ user.username }}">
+                {% else %}
+                    <img class="img-circle img-thumbnail" src="http://lorempixel.com/200/200" alt="{{ user.username }}">
+                {% endif %}
+            </div><!-- .col-lg-3 -->
+            <div class="info">
+                <div class="name">
+                    <strong>Nazwa użytkownika: </strong>{{ user.username }}
+                </div>
+                <div class="firstname">
+                    <strong>Imię: </strong>{{ user.first_name|default:"Brak." }}
+                </div>
+                <div class="lastname">
+                    <strong>Nazwisko: </strong>{{ user.last_name|default:"Brak." }}
+                </div>
+                <div class="email">
+                    <strong>Email: </strong>
+                    {% if user.email %}
+                        <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+                    {% else %}
+                        Brak.
+                    {% endif %}
+                </div>
+                <div class="description">
+                    <strong>Opis: </strong>{{ user.userprofile.description|default:"Brak opisu." }}
+                </div>
+            </div><!-- .info -->
+        </div><!-- .col-lg-12 -->
+    </div><!-- .row -->
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Wypożyczone przedmioty</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>Zdjęcie</th>
+                        <th>Opis</th>
+                        <th>Wypożyczone do</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in user.items_rented.all %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'view_item' item_id=item.pk %}">{{ item.name }}</a>
+                            </td>
+                            <td>
+                                {% if item.image %}
+                                    <img src="{% thumbnail item.image 150x150 %}">
+                                {% endif %}
+                            </td>
+                            <td>{{ item.description }}</td>
+                            <td>{{ item.rented_to }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">Brak wypożyczonych przedmiotów.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

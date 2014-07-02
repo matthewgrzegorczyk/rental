@@ -104,13 +104,17 @@ th.image {
     width: 1px;
     white-space: nowrap;
 }
-td.image img {
-    max-width: 100px;
-}
 .name > a, .reservation > a {
     font-weight: bold;
 }
-
+.input-group {
+    margin: 10px 0px 25px;
+}
+/* User Profile */
+.avatar {
+    float: left;
+    margin-right: 30px;
+}
 footer {
     margin-top: 50px;
     font-weight: bold;

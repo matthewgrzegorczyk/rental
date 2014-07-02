@@ -8,6 +8,7 @@ class ItemAdmin(admin.ModelAdmin):
     list_display_links = ['name']
     list_editable = ['rented_by', 'rent_power', 'vision_power']
     filter_horizontal = ['tags']
+    list_filter = ['active', 'added_by', 'rented_by', 'added_on', 'rented_on', 'last_modified', 'tags']
     fieldsets = (
         ('Basic item info', {
             'fields': (('name', 'active'), 'description', 'image', 'added_by', 'rented_by')

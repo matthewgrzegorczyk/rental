@@ -24,6 +24,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+# THUMBNAIL_DEBUG = True
+
 ALLOWED_HOSTS = []
 
 
@@ -40,7 +42,12 @@ INSTALLED_APPS = (
     'items',
     'profiles',
     'south',
+    'easy_thumbnails',
 )
+
+SOUTH_MIGRATION_MODULES = {
+    'easy_thumbnails': 'easy_thumbnails.south_migrations',
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -101,6 +108,7 @@ MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "images"),
 )
 
 STATICFILES_FINDERS = (

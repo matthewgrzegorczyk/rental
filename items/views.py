@@ -39,7 +39,7 @@ def view_item(request, item_id):
 
 def reserve_item(request, item_id):
 
-    if request.method == 'post':
+    if request.method == 'POST':
 
         form = forms.ReserveItem(request.POST)
 
