@@ -4,7 +4,7 @@ $(document).ready(function() {
 
      $('.datetimepicker').datetimepicker({
         format: 'dd/MM/yyyy hh:mm:ss',
-        useSeconds: true,
+        // useSeconds: true,
       });
 
 });

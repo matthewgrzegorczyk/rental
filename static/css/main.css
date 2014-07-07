@@ -390,7 +390,7 @@ a:hover {
 .bootstrap-datetimepicker-widget td span:hover {
     background: #252A30;
 }
-.bootstrap-datetimepicker-widget td.day:hover, .bootstrap-datetimepicker-widget td.hour:hover, .bootstrap-datetimepicker-widget td.minute:hover, .bootstrap-datetimepicker-widget td.second:hover {
+.bootstrap-datetimepicker-widget td.day:hover, .bootstrap-datetimepicker-widget td.hour:hover, .bootstrap-datetimepicker-widget td.minute:hover, .bootstrap-datetimepicker-widget td.second:hover, .bootstrap-datetimepicker-widget thead tr:first-child th:hover {
     background: #252A30;
 }
 
