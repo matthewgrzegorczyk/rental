@@ -6,11 +6,9 @@ from django.forms.extras.widgets import SelectDateWidget, SelectDateWidget
 
 
 class ReserveItem(forms.Form):
-    reserve_from_date = forms.DateTimeField(label="Reserve since")
-    reserve_from_time = forms.SplitDateTimeField(label="Rezerw", widget=AdminSplitDateTime())
-    reserve_to_date = forms.DateTimeField(label="Reserve to", widget=AdminSplitDateTime)
-    reserve_to_time = forms.DateTimeField(label="Reserve to", widget=AdminSplitDateTime)
-    comment = forms.CharField(label="Komentarz", widget=forms.Textarea)
+    reserve_from = forms.DateTimeField()
+    reserve_to = forms.DateTimeField()
+    # comment = forms.CharField(label="Komentarz", widget=forms.Textarea)
 
 
 class registerForm(forms.Form):

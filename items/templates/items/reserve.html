@@ -6,15 +6,14 @@
     {# <link rel="stylesheet" href="{% static "css/jquery-ui.min.css" %}"> #}
     {# <link rel="stylesheet" href="{% static "css/jquery-ui.structure.min.css" %}"> #}
     {# <link rel="stylesheet" href="{% static "css/jquery-ui-1.10.0.custom.css" %}"> #}
-    <link rel="stylesheet" href="{% static "css/jquery.ui.timepicker.css" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap-datetimepicker.css" %}">
 {% endblock %}
 
 {% block extrafooter %}
-    <script src="{% static "jquery/jquery-ui.js" %}"></script>
-    <script src="{% static "jquery/jquery-ui.min.js" %}"></script>
     {# <script src="{% static "js/vendor/jquery-ui.min.js" %}"></script> #}
-    <script src="{% static "js/vendor/jquery.ui.timepicker.js" %}"></script>
-    {# <script src="{% static "js/vendor/jquery.ui.position.min.js" %}"></script> #}
+    <script src="{% static "js/vendor/moment.min.js" %}"></script>
+    <script src="{% static "js/vendor/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/vendor/bootstrap-datetimepicker.js" %}"></script>
     {{ block.super }}
 {% endblock %}
 
@@ -25,45 +24,28 @@
             <label>Rezerwacja od</label>
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <div class="input-group">
-                        <input type="text" class="vDateField form-control" title="YYYY-MM-DD">
+                    <div id="datetime" class="datetimepicker input-group date" data-date-format="YYYY-MM-DD hh:mm:ss">
+                        <input name="reserve_from" class="form-control" type="text">
                         <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="glyphicon glyphicon-calendar" data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar"></i>
                         </span>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="input-group">
-                        <input type="text" class="vTimeField form-control">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-time"></i>
-                        </span>
-                    </div>
-                </div>
+                </div><!-- .col-lg-3 -->
             </div><!-- .row -->
         </p>
         <p>
             <label>Rezerwacja do</label>
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
-                    <div class="input-group">
-                        <input type="text" class="vDateField form-control" title="YYYY-MM-DD">
+                    <div id="datetime" class="datetimepicker input-group date" data-date-format="YYYY-MM-DD hh:mm:ss">
+                        <input name="reserve_to" class="form-control" type="text">
                         <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-calendar"></i>
+                            <i class="glyphicon glyphicon-calendar" data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar"></i>
                         </span>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="input-group">
-                        <input type="text" class="vTimeField form-control">
-                        <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-time"></i>
-                        </span>
-                    </div>
-                </div>
+                </div><!-- .col-lg-3 -->
             </div><!-- .row -->
         </p>
-        {{ form.reserve_from_time }}
-        <input class="btn btn-primary" type="submit" value="Submit">
+        <input class="btn btn-primary" type="submit" value="Rezerwuj">
     </form>
 {% endblock %}

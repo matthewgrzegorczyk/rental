@@ -28,7 +28,7 @@
         {% csrf_token %}
             <label>Nazwa użytkownika</label>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-md-8 col-sm-12">
                     <div class="input-group">
                         <input name="username" type="text" class="form-control" title="Nazwa użytkownika nie może zawierać znaków specjalnych oraz spacji.">
                         <span class="input-group-addon">
@@ -39,29 +39,29 @@
             </div><!-- .row -->
             <label>Hasło</label>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-md-8 col-sm-12">
                     <div class="input-group">
                         <input name="password" type="password" class="form-control" title="Hasła muszą się zgadzać.">
                         <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-heart-empty"></i>
+                            <i class="glyphicon glyphicon-pencil"></i>
                         </span>
                     </div>
                 </div>
             </div><!-- .row -->
             <label>Powtórz hasło</label>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-md-8 col-sm-12">
                     <div class="input-group">
                         <input name="confirm_password" type="password" class="form-control" title="Hasła muszą się zgadzać.">
                         <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-heart-empty"></i>
+                            <i class="glyphicon glyphicon-pencil"></i>
                         </span>
                     </div>
                 </div>
             </div><!-- .row -->
             <label>Email</label>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-md-8 col-sm-12">
                     <div class="input-group">
                         <input name="email" type="text" class="form-control" title="Email jest wymagany w celu aktywacji konta, wykorzystywany jest również w przypadku resetu hasła..">
                         <span class="input-group-addon">
@@ -72,33 +72,33 @@
             </div><!-- .row -->
             <label>Imię</label>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-md-8 col-sm-12">
                     <div class="input-group">
                         <input name="first_name" type="text" class="form-control" title="Imię. Wykorzystywane jest w profilu oraz w kilku innych miejscach w aplikacji.">
                         <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-heart-empty"></i>
+                            <i class="glyphicon glyphicon-user"></i>
                         </span>
                     </div>
                 </div>
             </div><!-- .row -->
             <label>Nazwisko</label>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-md-8 col-sm-12">
                     <div class="input-group">
                         <input name="last_name" type="text" class="form-control" title="Nazwisko, wykorzysytwane wyłącznie w celach informacyjnych.">
                         <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-heart-empty"></i>
+                            <i class="glyphicon glyphicon-user"></i>
                         </span>
                     </div>
                 </div>
             </div><!-- .row -->
             <label>{{ form.avatar.label }}</label>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-md-8 col-sm-12">
                     <div class="input-group">
                         {{ form.avatar }}
                         <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-heart-empty"></i>
+                            <i class="glyphicon glyphicon-file"></i>
                         </span>
                     </div>
                 </div>

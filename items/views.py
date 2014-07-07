@@ -11,13 +11,13 @@ from items import forms
 
 # @login_required(login_url='/admin')
 def index(request):
-    items = Item.objects.all()
+    user = request.user
 
-    # template = loader.get_template('items/index.html')
-    # context = RequestContext(request, {
-    #     'items': items,
-    #     })
-    # return HttpResponse(template.render(context))
+    if not user.is_anonymous and user.userprofile:
+        items = Item.objects.filter(active=True, vision_power__lte=user.userprofile.vision_power)
+    else:
+        items = Item.published.all()
+
     context = {
         'items': items,
     }
@@ -39,20 +39,18 @@ def view_item(request, item_id):
 
 def reserve_item(request, item_id):
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user:
+        try:
+            item = Item.objects.get(item_id)
+        except Item.DoesNotExist:
+            raise Http404()
 
+        user = request.user.userprofile
         form = forms.ReserveItem(request.POST)
 
-        if form.is_valid:
-            items = Item.objects.all()
-            status = u"Item reserved successfully."
+        user.rent_item(item, form.reserve_to)
 
-            context = {
-                'items': items,
-                'status': status,
-            }
-
-            return render(request, 'items/index.html', context)
+        return HttpResponseRedirect('/')
     else:
         form = forms.ReserveItem()
         try:

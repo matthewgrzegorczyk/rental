@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Rental - {% block title %}{% endblock %}</title>
+        <title>Rental - {% block title %}My Little Rental App{% endblock %}</title>
         <meta name="description" content="{% block description %}My little rental app.{% endblock %}">
         <meta name="keywords" content="{% block keywords %}rental{% endblock %}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,36 +15,114 @@
         {% load staticfiles %}
         <link rel="stylesheet" href="{% static "css/normalize.css" %}">
         {# <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}"> #}
+        {# <link rel="stylesheet" href="{% static "css/bootstrap-theme.min.css" %}"> #}
+        {# <link rel="stylesheet" href="http://bootswatch.com/amelia/bootstrap.min.css"> #}
+        {# <link rel="stylesheet" href="http://bootswatch.com/cerulean/bootstrap.min.css"> #}
         {# <link rel="stylesheet" href="http://bootswatch.com/flatly/bootstrap.min.css"> #}
-        <link rel="stylesheet" href="http://bootswatch.com/darkly/bootstrap.min.css">
-        <link rel="stylesheet" href="{% static "css/main.css" %}">
+        {# <link rel="stylesheet" href="http://bootswatch.com/darkly/bootstrap.min.css"> #}
+        {# <link rel="stylesheet" href="http://bootswatch.com/cyborg/bootstrap.min.css"> #}
+        {# <link rel="stylesheet" href="http://bootswatch.com/readable/bootstrap.min.css"> #}
+        {# <link rel="stylesheet" href="http://bootswatch.com/simplex/bootstrap.min.css"> #}
+        {# <link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.min.css"> #}
+        <link rel="stylesheet" href="{% static "css/bootstrap.darkly.min.css" %}">
+        {# <link rel="stylesheet" href="http://bootswatch.com/superhero/bootstrap.min.css"> #}
+        {# <link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css"> #}
+        {# <link rel="stylesheet" href="http://bootswatch.com/united/bootstrap.min.css"> #}
         {% block extrahead %}
         {% endblock %}
+        <link rel="stylesheet" href="{% static "css/main.css" %}">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="container-fluid">
+        <div class="container">
             {% block header %}
-                <header>
-                    {% if request.user.is_authenticated %}
-                        Jesteś zalogowany jako <a href="{% url 'view_user' request.user.pk %}">{{ request.user.username }}</a>.
-                    {% else %}
-                        <a href="/admin">Zaloguj się</a>
-                    {% endif %}
-                </header>
+                <div class="row">
+                    <header class="col-xs-12">
+                        {% if request.user.is_authenticated %}
+                            Jesteś zalogowany jako <a href="{% url 'view_user' request.user.username %}">{{ request.user.username }}</a>.<br />
+                            <div class="links btn-group visible-xs-inline">
+                                {% if request.user.is_superuser %}
+                                    <a href="/admin" class="btn btn-sm btn-info">Panel</a>
+                                {% endif %}
+                                <a href="{% url 'logout' %}" class="btn btn-sm btn-danger">Wyloguj</a>
+                            </div><!-- .links -->
+                            <div class="links btn-group hidden-xs">
+                                {% if request.user.is_superuser %}
+                                    <a href="/admin" class="btn btn-xs btn-info">Panel</a>
+                                {% endif %}
+                                <a href="{% url 'logout' %}" class="btn btn-xs btn-danger">Wyloguj</a>
+                            </div><!-- .links -->
+                        {% else %}
+                            <div class="row">
+                                {# <a href="/admin">Zaloguj się</a> #}
+                                <form method="post" action="/login/">
+                                    {% csrf_token %}
+                                    <div class="col-xs-6 col-md-3 col-lg-3">
+                                        <div class="input-group input-group-sm">
+                                            <input name="username" type="text" class="form-control" title="Login">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-user"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-md-3 col-lg-3">
+                                        <div class="input-group input-group-sm">
+                                            <input name="password" type="password" class="form-control" title="Hasło.">
+                                            <span class="input-group-btn">
+                                                <input class="btn btn-default" type="submit" value="Login">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </header>
+                </div><!-- .row -->
             {% endblock %}
             <h1 class="text-center"><a href="/">Rental app</a></h1>
-        	{% block main %}
-        	{% endblock %}
-    		{% block footer %}
-        		<footer class="text-center">
-					<p>Author: Mateusz Grzegorczyk<br>
-					Powered by <a href="http://getbootstrap.com/">Bootstrap 3.2</a> &amp; <a href="http://djangoproject.com">Django {{ django.get_version|default:"1.6.5" }}</a></p>
-				</footer>
-    		{% endblock %}
-		</div>
+            {% block main %}
+            {% endblock %}
+            {% block footer %}
+                <footer class="text-center">
+                    <p>Author: Mateusz Grzegorczyk<br>
+                    Powered by <a href="http://getbootstrap.com/">Bootstrap 3.2</a> &amp; <a href="http://djangoproject.com">Django {{ django.get_version|default:"1.6.5" }}</a></p>
+                    {% if request.user.is_superuser %}
+                        <p>
+                            <a href="/admin">Admin backend</a>
+                        </p>
+                    {% endif %}
+                </footer>
+                <div class="col-xs-12">
+                    <a href="#" class="btn btn-default">Default</a>
+                    <a href="#" class="btn btn-primary">Primary</a>
+                    <a href="#" class="btn btn-success">success</a>
+                    <a href="#" class="btn btn-info">info</a>
+                    <a href="#" class="btn btn-warning">warning</a>
+                    <a href="#" class="btn btn-danger">danger</a>
+                    {# <a href="#" class="btn btn-link">link</a> #}
+                </div>
+                <div class="col-xs-12">
+                    <a href="#" class="btn btn-sm btn-default">Default btn-sm</a>
+                    <a href="#" class="btn btn-sm btn-primary">Primary btn-sm</a>
+                    <a href="#" class="btn btn-sm btn-success">success btn-sm</a>
+                    <a href="#" class="btn btn-sm btn-info">info btn-sm</a>
+                    <a href="#" class="btn btn-sm btn-warning">warning btn-sm</a>
+                    <a href="#" class="btn btn-sm btn-danger">danger btn-sm</a>
+                    {# <a href="#" class="btn btn-sm btn-link">link btn-xs</a> #}
+                </div>
+                <div class="col-xs-12">
+                    <a href="#" class="btn btn-xs btn-default">Default btn-xs</a>
+                    <a href="#" class="btn btn-xs btn-primary">Primary btn-xs</a>
+                    <a href="#" class="btn btn-xs btn-success">success btn-xs</a>
+                    <a href="#" class="btn btn-xs btn-info">info btn-xs</a>
+                    <a href="#" class="btn btn-xs btn-warning">warning btn-xs</a>
+                    <a href="#" class="btn btn-xs btn-danger">danger btn-xs</a>
+                    {# <a href="#" class="btn btn-xs btn-link">link btn-xs</a> #}
+                </div>
+            {% endblock %}
+        </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>

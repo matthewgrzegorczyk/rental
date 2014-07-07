@@ -2,26 +2,32 @@
 {% load thumbnail %}
 
 {% block main %}
-    <p>Nazwa: {{ item.name }}</p>
-    <p>Opis: {{ item.description }}</p>
-    {% thumbnail item.image 150x150 as image %}
+    <p><strong>Nazwa: </strong>{{ item.name }}</p>
+    <p><strong>Opis: </strong>{{ item.description }}</p>
     {% if image %}
-        <p>Zdjecie: <img src="{{ image.url }}"></p>
+        <p>
+        <strong>Zdjecie: </strong>{% thumbnail item.image 250x250 %}</p>
     {% endif %}
     <p>
-        Dodany przez:
+        <strong>Dodany przez: </strong>
         {% if item.added_by %}
-            <a href="{% url 'view_user' item.added_by.pk %}">{{ item.added_by.username }}</a>
+            <a href="{% url 'view_user' item.added_by.username %}">{{ item.added_by.username }}</a>
         {% else %}
             Anonima.
         {% endif %}
     </p>
     <p>
-        Wypożyczony przez:
+        <strong>Wypożyczony przez: </strong>
         {% if item.rented_by %}
-            <a href="{% url 'view_user' item.rented_by.pk %}">{{ item.rented_by.username }}</a>
+            <a href="{% url 'view_user' item.rented_by.username %}">{{ item.rented_by.username }}</a>
         {% else %}
             Nikogo.
         {% endif %}
+    </p>
+    <p>
+        <strong>Wypożyczony od: </strong>{{ item.rented_on|date:"Y-m-d H:i:s" }}
+    </p>
+    <p>
+        <strong>Wypożyczony do: </strong>{{ item.rented_to|date:"Y-m-d H:i:s" }}
     </p>
 {% endblock %}

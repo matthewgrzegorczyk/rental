@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
 from profiles.models import UserProfile, GroupProfile
 import datetime
@@ -10,6 +11,11 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return self.slug
+
+
+class ItemManager(models.Manager):
+    def get_queryset(self):
+        return super(ItemManager, self).get_queryset().filter(active=True, vision_power__lte=settings.VISION_POWER)
 
 
 class Item(models.Model):
@@ -37,9 +43,12 @@ class Item(models.Model):
     last_modified = models.DateTimeField(verbose_name="Modified on", editable=False, default=datetime.datetime.now)
     rented_on = models.DateTimeField(verbose_name="Rented On", blank=True, null=True)
     rented_to = models.DateTimeField(verbose_name="Rented To", blank=True, null=True)
-    rent_power = models.SmallIntegerField(verbose_name="Rent Power", default=50, help_text=u"Power needed to rent item.")
-    vision_power = models.SmallIntegerField(verbose_name="Vision Power", default=50, help_text=u"Power needed to view item.")
+    rent_power = models.SmallIntegerField(verbose_name="Rent Power", default=settings.RENT_POWER, help_text=u"Power needed to rent item.")
+    vision_power = models.SmallIntegerField(verbose_name="Vision Power", default=settings.VISION_POWER, help_text=u"Power needed to view item.")
     tags = models.ManyToManyField(Tag, verbose_name="Tag")
+
+    objects = models.Manager()
+    published = ItemManager()
 
     class Meta:
         get_latest_by = "added_on"

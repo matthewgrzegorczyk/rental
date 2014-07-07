@@ -40,7 +40,7 @@
                         </td>
                         <td class="reservation">
                             {% if item.rented_by %}
-                                <a href="{% url 'view_user' item.rented_by.pk %}">{{ item.rented_by.username }}</a>
+                                <a href="{% url 'view_user' item.rented_by.username %}">{{ item.rented_by.username }}</a>
                             {% else %}
                                 <a href="{% url 'reserve_item' item.pk %}" class="btn btn-xs btn-default btn-block">Rezerwuj</a>
                             {% endif %}

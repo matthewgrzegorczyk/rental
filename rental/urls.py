@@ -24,11 +24,12 @@ urlpatterns = patterns('',
     url(r"^item/(?P<item_id>\d+)/reserve/$", reserve_item, name="reserve_item"),
 
     # Profiles
-    url(r"^profile/(?P<user_id>\d+)/$", view_user, name="view_user"),
-    url(r"^group/(?P<group_id>\d+)/$", view_group, name="view_group"),
+    url(r"^profile/(?P<user_name>\w+)/$", view_user, name="view_user"),
+    url(r"^group/(?P<group_name>)\w+/$", view_group, name="view_group"),
 
     # Login/Register
-    url(r"^login/$", login, name="login"),
+    url(r"^login/$", login_user, name="login"),
+    url(r"^logout/$", logout_user, name="logout"),
     url(r"^register/$", register, name="register"),
 
 )

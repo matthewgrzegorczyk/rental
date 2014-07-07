@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.contrib.auth import authenticate, login, logout
+
 from django.contrib.auth.models import User, Group
 from profiles.models import UserProfile, GroupProfile
 
 from profiles import forms
 
-def view_user(request, user_id):
+def view_user(request, user_name):
     try:
-        user = User.objects.get(pk=user_id)
+        user = User.objects.get(username=user_name)
     except User.DoesNotExist:
         raise Http404()
 
@@ -32,8 +34,24 @@ def view_group(request, group_id):
     return render(request, 'profiles/view_group.html', context)
 
 
-def login(request):
-    return render(request, 'profiles/login.html')
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
+
+        user = authenticate(username=username, password=password)
+
+        if user and user.is_active:
+            login(request, user)
+            return HttpResponseRedirect('/')
+
+    return HttpResponseRedirect('/')
+
+
+def logout_user(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return HttpResponseRedirect('/')
 
 
 def register(request):

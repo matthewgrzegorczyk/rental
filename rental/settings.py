@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'grappelli',
+    # 'bootstrap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -115,3 +116,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'django.contrib.staticfiles.finders.FileSystemFinder',
 )
+
+
+# Custom rental variables
+VISION_POWER = 50   # default vision power set for Item, UserProfile, GroupProfle object
+RENT_POWER = 50     # defalt rent power set for Item, UserProfile, GroupProfle objects
