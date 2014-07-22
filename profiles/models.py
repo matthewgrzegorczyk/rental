@@ -41,7 +41,6 @@ class UserProfile(models.Model):
             item.rented_on = timezone.now()
             item.rented_to = date_to
             item.save()
-
             return True
 
         return False
