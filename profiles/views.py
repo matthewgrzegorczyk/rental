@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
@@ -8,6 +9,7 @@ from django.contrib.auth.models import User, Group
 from profiles.models import UserProfile, GroupProfile
 
 from profiles import forms
+
 
 def view_user(request, user_name):
     try:

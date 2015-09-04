@@ -95,9 +95,11 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Warsaw'
 
+DATETIME_FORMAT = "Y-m-d H:i:s"
+
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -112,7 +114,7 @@ MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    os.path.join(BASE_DIR, "images"),
+    # os.path.join(BASE_DIR, "images"),
 )
 
 STATICFILES_FINDERS = (

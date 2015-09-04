@@ -25,7 +25,10 @@ class ItemAdmin(admin.ModelAdmin):
     filter_horizontal = ['tags']
     fieldsets = (
         ('Basic item info', {
-            'fields': (('name', 'active'), 'description', 'image', 'added_by', 'rented_by')
+            'fields': (('name', 'active'), 'description', 'image', 'added_by')
+        }),
+        ('Renting information', {
+            'fields': ('rented_by', 'rented_on', 'rented_to')
         }),
         ('Permissions', {
             'fields': ('rent_power', 'vision_power')

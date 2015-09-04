@@ -1,35 +1,35 @@
 {% extends "base.html" %}
-{% load thumbnail %}
+{% load thumbnail i18n %}
 
 {% block main %}
-    <p><strong>Nazwa: </strong>{{ item.name }}</p>
-    <p><strong>Opis: </strong>{{ item.description }}</p>
+    <p><strong>{% trans "Name" %}: </strong>{{ item.name }}</p>
+    <p><strong>{% trans "Description" %}: </strong>{{ item.description }}</p>
     {% if item.image %}
         <p>
-            <strong>Zdjecie: </strong>{% thumbnail item.image 250x250 %}
+            <strong>{% trans "Image" %}: </strong>{% thumbnail item.image 250x250 %}
         </p>
     {% endif %}
     <p>
-        <strong>Dodany przez: </strong>
+        <strong>{% trans "Added by" %}: </strong>
         {% if item.added_by %}
             <a href="{% url 'view_user' item.added_by.username %}">{{ item.added_by.username }}</a>
         {% else %}
-            Anonima.
+            {% trans "Anonymous" %}
         {% endif %}
     </p>
     <p>
-        <strong>Wypożyczony przez: </strong>
+        <strong>{% trans "Rented by" %}: </strong>
         {% if item.rented_by %}
             <a href="{% url 'view_user' item.rented_by.username %}">{{ item.rented_by.username }}</a>
         {% else %}
-            Nikogo.
+            {% trans "Noone" %}
         {% endif %}
     </p>
     <p>
-        <strong>Wypożyczony od: </strong>{{ item.rented_on|date:"Y-m-d H:i:s" }}
+        <strong>{% trans "Rented since" %}: </strong>{{ item.rented_on|date:"Y-m-d H:i:s" }}
     </p>
     <p>
-        <strong>Wypożyczony do: </strong>{{ item.rented_to|date:"Y-m-d H:i:s" }}
+        <strong>{% trans "Rented to" %}: </strong>{{ item.rented_to|date:"Y-m-d H:i:s" }}
     </p>
     <div id="disqus_thread"></div>
     <script type="text/javascript">

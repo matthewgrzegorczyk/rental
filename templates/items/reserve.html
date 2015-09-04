@@ -19,12 +19,12 @@
 
 {% block main %}
     <p>
-        Nazwa: {{ item.name }}
+        {% trans "Name" %}: {{ item.name }}
     </p>
     <form action="/reserve" method="post">
         {% csrf_token %}
         <p>
-            <label>Rezerwacja od</label>
+            <label>{% trans "Reserve from" %}</label>
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div id="datetime" class="datetimepicker input-group date" data-date-format="YYYY-MM-DD hh:mm:ss">
@@ -37,7 +37,7 @@
             </div><!-- .row -->
         </p>
         <p>
-            <label>Rezerwacja do</label>
+            <label>{% trans "Reserve to" %}</label>
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div id="datetime" class="datetimepicker input-group date" data-date-format="YYYY-MM-DD hh:mm:ss">
@@ -49,6 +49,6 @@
                 </div><!-- .col-lg-3 -->
             </div><!-- .row -->
         </p>
-        <input class="btn btn-primary" type="submit" value="Złóż rezerwacje">
+        <input class="btn btn-primary" type="submit" value="{% trans "Apply reservation" %}">
     </form>
 {% endblock %}

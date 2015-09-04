@@ -8,4 +8,4 @@
 RCS
 .subversion
 *.orig
-media/
+media/*
