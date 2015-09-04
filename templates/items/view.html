@@ -4,9 +4,10 @@
 {% block main %}
     <p><strong>Nazwa: </strong>{{ item.name }}</p>
     <p><strong>Opis: </strong>{{ item.description }}</p>
-    {% if image %}
+    {% if item.image %}
         <p>
-        <strong>Zdjecie: </strong>{% thumbnail item.image 250x250 %}</p>
+            <strong>Zdjecie: </strong>{% thumbnail item.image 250x250 %}
+        </p>
     {% endif %}
     <p>
         <strong>Dodany przez: </strong>

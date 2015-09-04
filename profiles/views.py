@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.models import User, Group
@@ -45,6 +46,7 @@ def login_user(request):
             login(request, user)
             return HttpResponseRedirect('/')
 
+    messages.error(request, "Incorrect login credentials.")
     return HttpResponseRedirect('/')
 
 

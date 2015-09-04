@@ -1,0 +1,49 @@
+{% load i18n %}
+
+<div class="row">
+    <header class="col-xs-12">
+        {% if request.user.is_authenticated %}
+            {% trans "You're logged in as" %} <a href="{% url 'view_user' request.user.username %}">{{ request.user.username }}</a>.<br />
+            <div class="links btn-group visible-xs-inline">
+                {% if request.user.is_superuser %}
+                    <a href="/admin" class="btn btn-sm btn-info">Panel</a>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="btn btn-sm btn-danger">Wyloguj</a>
+            </div><!-- .links -->
+            <div class="links btn-group hidden-xs">
+                {% if request.user.is_superuser %}
+                    <a href="/admin" class="btn btn-xs btn-info">Panel</a>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="btn btn-xs btn-danger">{% trans "Logout" %}</a>
+            </div><!-- .links -->
+        {% else %}
+            <div class="row">
+                {# <a href="/admin">Zaloguj się</a> #}
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="col-xs-6 col-md-3 col-lg-3">
+                        <div class="input-group input-group-sm">
+                            <input name="username" type="text" class="form-control" title="{% trans "Login" %}">
+                            <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3">
+                        <div class="input-group input-group-sm">
+                            <input name="password" type="password" class="form-control" title="{% trans "Password" %}">
+                            <span class="input-group-btn">
+                                <input class="btn btn-default" type="submit" value="{% trans "Login" %}">
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endif %}
+    </header>
+</div><!-- .row -->

@@ -13,6 +13,7 @@ from items import forms
 def index(request):
     user = request.user
 
+    # If user is logged in and it's not anonymous get items with his vision power.
     if not user.is_anonymous and user.userprofile:
         items = Item.objects.filter(active=True, vision_power__lte=user.userprofile.vision_power)
     else:
@@ -30,11 +31,17 @@ def view_item(request, item_id):
     except (Item.DoesNotExist, Item.MultipleObjectsReturned):
         raise Http404()
 
-    template = loader.get_template('items/view.html')
-    context = RequestContext(request, {
-        'item': item,
-    })
-    return HttpResponse(template.render(context))
+    context = {}
+    # Check if user have expected vision power
+    if item.vision_power > settings.VISION_POWER:
+        if request.user.userprofile and item.vision_power <= request.user.userprofile:
+                context['item'] = item
+        else:
+            context['error'] = "You don't have permission to view this item."
+    else:
+        context['item'] = item
+
+    return render(request, 'items/view.html', context)
 
 
 def reserve_item(request, item_id):

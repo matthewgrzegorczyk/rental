@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load thumbnail %}
+{% load thumbnail i18n %}
 
 {% block title %}
     Profil użytkownika {{ user.username }}
@@ -24,24 +24,24 @@
             </div><!-- .col-lg-3 -->
             <div class="info">
                 <div class="name">
-                    <strong>Nazwa użytkownika: </strong>{{ user.username }}
+                    <strong>{% trans "Username" %}: </strong>{{ user.username }}
                 </div>
                 <div class="firstname">
-                    <strong>Imię: </strong>{{ user.first_name|default:"Brak." }}
+                    <strong>{% trans "First name" %}: </strong>{{ user.first_name|default:"Brak." }}
                 </div>
                 <div class="lastname">
-                    <strong>Nazwisko: </strong>{{ user.last_name|default:"Brak." }}
+                    <strong>{% trans "Last name" %}: </strong>{{ user.last_name|default:"Brak." }}
                 </div>
                 <div class="email">
                     <strong>Email: </strong>
                     {% if user.email %}
                         <a href="mailto:{{ user.email }}">{{ user.email }}</a>
                     {% else %}
-                        Brak.
+                        {% trans "No email address" %}
                     {% endif %}
                 </div>
                 <div class="description">
-                    <strong>Opis: </strong>{{ user.userprofile.description|default:"Brak opisu." }}
+                    <strong>{% trans "Description" %}: </strong>{{ user.userprofile.description|default:_("No description set") }}
                 </div>
             </div><!-- .info -->
         </div><!-- .col-lg-12 -->

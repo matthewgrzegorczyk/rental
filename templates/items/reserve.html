@@ -18,6 +18,9 @@
 {% endblock %}
 
 {% block main %}
+    <p>
+        Nazwa: {{ item.name }}
+    </p>
     <form action="/reserve" method="post">
         {% csrf_token %}
         <p>
@@ -46,6 +49,6 @@
                 </div><!-- .col-lg-3 -->
             </div><!-- .row -->
         </p>
-        <input class="btn btn-primary" type="submit" value="Rezerwuj">
+        <input class="btn btn-primary" type="submit" value="Złóż rezerwacje">
     </form>
 {% endblock %}

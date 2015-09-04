@@ -42,7 +42,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'items',
     'profiles',
-    'south',
     'easy_thumbnails',
 )
 
