@@ -32,6 +32,8 @@ def view_item(request, item_id):
         raise Http404()
 
     context = {}
+
+
     # Check if user have expected vision power
     if item.vision_power > settings.VISION_POWER:
         if request.user.userprofile and item.vision_power <= request.user.userprofile:
